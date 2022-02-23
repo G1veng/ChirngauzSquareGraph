@@ -38,19 +38,17 @@ namespace FunctionGraph
 
     private void LoadDataInTAble()
     {
+      Graphics graphics = table.CreateGraphics();
+      Pen pen = new Pen(Color.Black, 2);
+      SolidBrush drawBrush = new SolidBrush(Color.Black);
+      Font drawFont = new Font("Arial", 16);
       MainForm data = (MainForm)this.Owner;
       var points = data.GetCalculations();
       int iterator = 0;
       foreach(var point in points)
       {
-        
-        Graphics graphics = table.CreateGraphics();
-        Pen pen = new Pen(Color.Black, 2);
         graphics.DrawLine(pen, 0, table.Height / 2, table.Width, table.Height / 2);
         graphics.DrawLine(pen, table.Width / 2, 0, table.Width / 2, table.Height);
-        Font drawFont = new Font("Arial", 16);
-        SolidBrush drawBrush = new SolidBrush(Color.Black);
-        Brush brush = Brushes.Black;
         graphics.DrawString("x", drawFont, drawBrush, table.Width - (20), table.Height / 2 + (0));
         graphics.DrawString("y", drawFont, drawBrush, table.Width / 2 - 40 / 2, 0);
         iterator++;
