@@ -59,9 +59,9 @@ namespace FunctionGraph
       close.Location = new Point(dontShowAgain.Location.X + dontShowAgreement.Size.Width + dontShowAgain.Size.Width + 20, dontShowAgain.Location.Y);
       close.Size = new Size(40, 30);
       this.Controls.Add(close);
-      close.Click += close_Click;
+      close.Click += Close_Click;
     }
-    public void close_Click(object sender, EventArgs e)
+    public void Close_Click(object sender, EventArgs e)
     {
       if (dontShowAgain.Checked)
       {

@@ -144,8 +144,8 @@ namespace FunctionGraph
 
     private void Table_Click(object sender, EventArgs e)
     {
-      Table table = new Table();
-      table.ShowDialog(this);
+      Table table = new Table(GetCalculations());
+      table.Show();
     }
   }
 }
