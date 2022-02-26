@@ -55,7 +55,7 @@ namespace FunctionGraph
       {
         rightBorder = RightBorder.Text;
       }
-      if (Step.Text == "" || !double.TryParse(Step.Text, out uselessResult))
+      if (Step.Text == "" | !double.TryParse(Step.Text, out uselessResult) | (int)uselessResult <= 0 )
         WrongData.SetError(Step, error);
       else
       {
