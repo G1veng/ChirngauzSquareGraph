@@ -24,9 +24,9 @@ namespace FunctionGraph
       MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
       CreateFormGreeting();
     }
-    private void Calculate_Click(object sender, EventArgs e)
+
+    public void CheckData()
     {
-      #region Check data
       WrongData.Clear();
       string constA = "", leftBorder = "", rightBorder = "", step = "";
       if (ConstA.Text == "" || !double.TryParse(ConstA.Text, out double uselessResult))
@@ -82,12 +82,15 @@ namespace FunctionGraph
           }
         }
       }
-      #endregion
+    }
+    private void Calculate_Click(object sender, EventArgs e)
+    {
+      CheckData();
       Graphics graphics = pictureBox1.CreateGraphics();
       graphics.Clear(Color.White);
       GetAxes();
-      if (constA != "" & leftBorder != "" & rightBorder != "" & step != "" && WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
-        && WrongData.GetError(ConstA) == "")
+      if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
+        && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
       {
         var points = GetCalculations();
         PointF[] somePointsUp = new PointF[points.Count / 2];
@@ -108,10 +111,9 @@ namespace FunctionGraph
     }
     public List<ChirgauzSquareModel> GetCalculations()
     {
-      if (ConstA.Text != "" & double.TryParse(ConstA.Text, out double constA) &
-        LeftBorder.Text != "" & double.TryParse(LeftBorder.Text, out double leftBorder) &
-        RightBorder.Text != "" & double.TryParse(RightBorder.Text, out double rightBorder) &
-        Step.Text != "" & double.TryParse(Step.Text, out double step) & (int)constA != 0)
+      CheckData();
+      if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
+        && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
         return _concentrationService.GetPoints(double.Parse(ConstA.Text), double.Parse(LeftBorder.Text), double.Parse(RightBorder.Text), double.Parse(Step.Text));
       return null;
     }
@@ -166,29 +168,28 @@ namespace FunctionGraph
     }
     private void SaveInitialData_Click(object sender, EventArgs e)
     {
+      CheckData();
       SaveFileDialog saveFileDialog = new SaveFileDialog();
       saveFileDialog.InitialDirectory = "c:\\";
       saveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-      if (ConstA.Text != "" & double.TryParse(ConstA.Text, out double constA) &
-   LeftBorder.Text != "" & double.TryParse(LeftBorder.Text, out double leftBorder) &
-   RightBorder.Text != "" & double.TryParse(RightBorder.Text, out double rightBorder) &
-   Step.Text != "" & double.TryParse(Step.Text, out double step) & (int)constA != 0)
+      if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
+        && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
       {
         if (saveFileDialog.ShowDialog() == DialogResult.OK)
         {
         var filePath = saveFileDialog.FileName;
         StreamWriter file = new StreamWriter(filePath, false);
 
-          if((int)constA == 0)
+          if(int.Parse(ConstA.Text) == 0)
           {
             WrongData.SetError(ConstA, errorOfConst);
           }
           else
           {
-            file.WriteLine(constA);
-            file.WriteLine(leftBorder);
-            file.WriteLine(rightBorder);
-            file.WriteLine(step);
+            file.WriteLine(double.Parse(ConstA.Text));
+            file.WriteLine(double.Parse(LeftBorder.Text));
+            file.WriteLine(double.Parse(RightBorder.Text));
+            file.WriteLine(double.Parse(Step.Text));
           }
           file.Close();
         }
@@ -223,14 +224,13 @@ namespace FunctionGraph
 
     private void SaveExcel_Click(object sender, EventArgs e)
     {
-      WriteRoExcelTable();
+      WriteToExcelTable();
     }
-    private void WriteRoExcelTable()
+    private void WriteToExcelTable()
     {
-      if (ConstA.Text != "" & double.TryParse(ConstA.Text, out double constA) &
-   LeftBorder.Text != "" & double.TryParse(LeftBorder.Text, out double leftBorder) &
-   RightBorder.Text != "" & double.TryParse(RightBorder.Text, out double rightBorder) &
-   Step.Text != "" & double.TryParse(Step.Text, out double step) & (int)constA != 0)
+      CheckData();
+      if (WrongData.GetError(LeftBorder) == "" && WrongData.GetError(RightBorder) == ""
+        && WrongData.GetError(ConstA) == "" && WrongData.GetError(Step) == "")
       {
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         saveFileDialog.InitialDirectory = "d:\\4 семестр\\РПС\\FunctionGraph";
@@ -245,12 +245,12 @@ namespace FunctionGraph
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         var package = new ExcelPackage();
         var sheet = package.Workbook.Worksheets.Add("GraphPoint");
-        sheet.Cells[1,1].Value = "a - "; sheet.Cells[1, 2].Value = constA;
-        sheet.Cells[2, 1].Value = "Left border - "; sheet.Cells[2, 2].Value = leftBorder;
+        sheet.Cells[1,1].Value = "a - "; sheet.Cells[1, 2].Value = double.Parse(ConstA.Text);
+        sheet.Cells[2, 1].Value = "Left border - "; sheet.Cells[2, 2].Value = double.Parse(LeftBorder.Text);
         sheet.Column(1).Width = 14;
         sheet.Column(2).Width = 14;
-        sheet.Cells[3, 1].Value = "Right border - "; sheet.Cells[3, 2].Value = rightBorder;
-        sheet.Cells[4, 1].Value = "Step - "; sheet.Cells[4, 2].Value = step;
+        sheet.Cells[3, 1].Value = "Right border - "; sheet.Cells[3, 2].Value = double.Parse(RightBorder.Text);
+        sheet.Cells[4, 1].Value = "Step - "; sheet.Cells[4, 2].Value = double.Parse(Step.Text);
         sheet.Cells[5, 1, 5, 2].LoadFromArrays(new object[][] { new[] { "X", "Y" } });
         sheet.Cells[5, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
         sheet.Cells[5, 2].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
