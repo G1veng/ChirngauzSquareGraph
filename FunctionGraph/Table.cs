@@ -51,7 +51,6 @@ namespace FunctionGraph
       save.Click += Save_Click;
       counter = 4;
     }
-
     private void LoadDataInTAble(object sender, PaintEventArgs e)
     {
       Graphics graphics = tableWithData.CreateGraphics();
@@ -81,7 +80,6 @@ namespace FunctionGraph
         paintData(counter - 5);
       }
     }
-
     private void paintData(int innerCounter)
     {
       Graphics graphics = tableWithData.CreateGraphics();

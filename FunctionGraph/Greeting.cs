@@ -27,7 +27,8 @@ namespace FunctionGraph
       welcome.ReadOnly = true;
       welcome.Text = "Created by: Shishko Daniil Yrevich";
       welcome.Size = new Size(this.Width / 2, 20);
-      welcome.Location = new Point(this.Width / 5, 0);
+      welcome.Location = new Point(this.Width / 10, 5);
+      welcome.BorderStyle = BorderStyle.None;
       this.Controls.Add(welcome);
       TextBox information = new TextBox();
       information.ReadOnly = true;
@@ -38,13 +39,15 @@ namespace FunctionGraph
         "about this to change borders. If function graph in cause of" +
         "coefficients becomes a dot or can't be ploted user also sees warning.";
       information.Multiline = true;
+      information.TextAlign = HorizontalAlignment.Left;
       information.Size = new Size(this.Width / 2 + 150, this.Height / 2);
-      information.Location = new Point(40, welcome.Height + 10);
+      information.Location = new Point(welcome.Location.X - 5, welcome.Height + 10);
+      information.BorderStyle = BorderStyle.None;
       this.Controls.Add(information);
       dontShowAgain = new CheckBox();
       dontShowAgain.Enabled = true;
       dontShowAgain.Size = new Size(20, welcome.Height);
-      dontShowAgain.Location = new Point(welcome.Location.X - dontShowAgain.Size.Width, information.Height + 20 + welcome.Height);
+      dontShowAgain.Location = new Point(welcome.Location.X , information.Height + 20 + welcome.Height);
       dontShowAgain.Appearance = Appearance.Normal;
       this.Controls.Add(dontShowAgain);
       TextBox dontShowAgreement = new TextBox();
@@ -52,7 +55,8 @@ namespace FunctionGraph
       dontShowAgreement.TextAlign = HorizontalAlignment.Left;
       dontShowAgreement.Text = "Check if you don't want see this again";
       dontShowAgreement.Size = new Size(welcome.Width + 20, 0);
-      dontShowAgreement.Location = new Point(dontShowAgain.Location.X + 20, dontShowAgain.Location.Y);
+      dontShowAgreement.Location = new Point(welcome.Location.X + 30, dontShowAgain.Location.Y + 3);
+      dontShowAgreement.BorderStyle = BorderStyle.None;
       this.Controls.Add(dontShowAgreement);
       Button close = new Button();
       close.Text = "OK";

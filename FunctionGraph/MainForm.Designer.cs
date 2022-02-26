@@ -30,7 +30,6 @@ namespace FunctionGraph
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.Calculate = new System.Windows.Forms.Button();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.ConstA = new System.Windows.Forms.TextBox();
@@ -46,6 +45,9 @@ namespace FunctionGraph
       this.RBorder = new System.Windows.Forms.Label();
       this.StepOfX = new System.Windows.Forms.Label();
       this.Table = new System.Windows.Forms.Button();
+      this.SaveInitialData = new System.Windows.Forms.Button();
+      this.GetInitial = new System.Windows.Forms.Button();
+      this.SaveExcel = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.WrongData)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Ecuation)).BeginInit();
@@ -108,7 +110,6 @@ namespace FunctionGraph
       // 
       // Ecuation
       // 
-      this.Ecuation.Image = ((System.Drawing.Image)(resources.GetObject("Ecuation.Image")));
       this.Ecuation.InitialImage = null;
       this.Ecuation.Location = new System.Drawing.Point(568, 27);
       this.Ecuation.Name = "Ecuation";
@@ -132,6 +133,7 @@ namespace FunctionGraph
       this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
       this.aboutToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
       this.aboutToolStripMenuItem.Text = "Information";
+      this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
       // 
       // a
       // 
@@ -171,7 +173,7 @@ namespace FunctionGraph
       // 
       // Table
       // 
-      this.Table.Location = new System.Drawing.Point(626, 335);
+      this.Table.Location = new System.Drawing.Point(568, 321);
       this.Table.Name = "Table";
       this.Table.Size = new System.Drawing.Size(94, 29);
       this.Table.TabIndex = 12;
@@ -179,11 +181,44 @@ namespace FunctionGraph
       this.Table.UseVisualStyleBackColor = true;
       this.Table.Click += new System.EventHandler(this.Table_Click);
       // 
+      // SaveInitialData
+      // 
+      this.SaveInitialData.Location = new System.Drawing.Point(568, 357);
+      this.SaveInitialData.Name = "SaveInitialData";
+      this.SaveInitialData.Size = new System.Drawing.Size(94, 29);
+      this.SaveInitialData.TabIndex = 13;
+      this.SaveInitialData.Text = "Save initial";
+      this.SaveInitialData.UseVisualStyleBackColor = true;
+      this.SaveInitialData.Click += new System.EventHandler(this.SaveInitialData_Click);
+      // 
+      // GetInitial
+      // 
+      this.GetInitial.Location = new System.Drawing.Point(568, 393);
+      this.GetInitial.Name = "GetInitial";
+      this.GetInitial.Size = new System.Drawing.Size(94, 29);
+      this.GetInitial.TabIndex = 14;
+      this.GetInitial.Text = "Get initial";
+      this.GetInitial.UseVisualStyleBackColor = true;
+      this.GetInitial.Click += new System.EventHandler(this.GetInitial_Click);
+      // 
+      // SaveExcel
+      // 
+      this.SaveExcel.Location = new System.Drawing.Point(669, 357);
+      this.SaveExcel.Name = "SaveExcel";
+      this.SaveExcel.Size = new System.Drawing.Size(94, 29);
+      this.SaveExcel.TabIndex = 15;
+      this.SaveExcel.Text = "Save Excel";
+      this.SaveExcel.UseVisualStyleBackColor = true;
+      this.SaveExcel.Click += new System.EventHandler(this.SaveExcel_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 450);
+      this.Controls.Add(this.SaveExcel);
+      this.Controls.Add(this.GetInitial);
+      this.Controls.Add(this.SaveInitialData);
       this.Controls.Add(this.Table);
       this.Controls.Add(this.StepOfX);
       this.Controls.Add(this.RBorder);
@@ -229,6 +264,9 @@ namespace FunctionGraph
     private System.Windows.Forms.Label LBorder;
     private System.Windows.Forms.Label a;
     private System.Windows.Forms.Button Table;
+    private System.Windows.Forms.Button SaveInitialData;
+    private System.Windows.Forms.Button GetInitial;
+    private System.Windows.Forms.Button SaveExcel;
   }
 }
 
