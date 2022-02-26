@@ -72,15 +72,15 @@ namespace FunctionGraph
       if (e.Delta > 0 && counter - 6 >= 0)
       {
         counter--;
-        paintData(counter - 5);
+        PaintData(counter - 5);
       }
       if (e.Delta < 0 && counter + 1 < points.Count)
       {
         counter++;
-        paintData(counter - 5);
+        PaintData(counter - 5);
       }
     }
-    private void paintData(int innerCounter)
+    private void PaintData(int innerCounter)
     {
       Graphics graphics = tableWithData.CreateGraphics();
       graphics.Clear(Color.White);

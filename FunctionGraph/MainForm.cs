@@ -21,10 +21,9 @@ namespace FunctionGraph
     {
       _concentrationService = concentrationService ?? throw new ArgumentNullException(nameof(concentrationService));
       InitializeComponent();
-      MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
+      MouseWheel += new MouseEventHandler(PictureBox1_MouseWheel);
       CreateFormGreeting();
-    }
-
+    }   
     public void CheckData()
     {
       WrongData.Clear();
@@ -129,7 +128,7 @@ namespace FunctionGraph
       graphics.DrawString("x", drawFont, drawBrush,  pictureBox1.Width - (20), pictureBox1.Height / 2 + (0));
       graphics.DrawString("y", drawFont, drawBrush, pictureBox1.Width / 2  - 40 / 2, 0);
     }
-    private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
+    private void PictureBox1_MouseWheel(object sender, MouseEventArgs e)
     {
       if(e.Delta > 0 && multiply < 30)
       {
@@ -221,7 +220,6 @@ namespace FunctionGraph
     {
       CreateFormGreeting();
     }
-
     private void SaveExcel_Click(object sender, EventArgs e)
     {
       WriteToExcelTable();

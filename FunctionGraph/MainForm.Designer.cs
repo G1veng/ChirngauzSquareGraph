@@ -30,6 +30,7 @@ namespace FunctionGraph
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.Calculate = new System.Windows.Forms.Button();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.ConstA = new System.Windows.Forms.TextBox();
@@ -110,6 +111,7 @@ namespace FunctionGraph
       // 
       // Ecuation
       // 
+      this.Ecuation.Image = ((System.Drawing.Image)(resources.GetObject("Ecuation.Image")));
       this.Ecuation.InitialImage = null;
       this.Ecuation.Location = new System.Drawing.Point(568, 27);
       this.Ecuation.Name = "Ecuation";
